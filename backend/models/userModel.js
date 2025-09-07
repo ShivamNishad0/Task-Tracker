@@ -17,7 +17,7 @@ const userSchema = new mongoose.Schema({
     phone: {
         type: String,
         required: false,
-        match: [/^\+[1-9]\d{1,14}$/, 'Please enter a valid phone number with country code (e.g., +1234567890)']
+        match: [/^(\+[1-9]\d{0,2}\s?)?\d{4,14}$/, 'Please enter a valid phone number (with optional country code, e.g., +91 1234567890 or +911234567890 or 1234567890)']
     }
     
 });
