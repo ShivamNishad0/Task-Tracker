@@ -5,16 +5,26 @@ import { getTasks,
     createTask,
     getTaskById,
     updateTask,
-    deleteTask
+    deleteTask,
+    chatbotQuery,
+    getTaskSuggestions
  } from '../controllers/taskController.js';
 
 
 const taskRouter = express.Router();
 
+
 // Example route to get all tasks (you can modify this as needed)
 taskRouter.route('/gp')
 .get(authMiddleware,getTasks)
 .post(authMiddleware,createTask);
+
+taskRouter.route('/chatbot/query')
+.post(authMiddleware, chatbotQuery);
+
+taskRouter.route('/chatbot/suggestions')
+.get(authMiddleware, getTaskSuggestions);
+
 taskRouter.route('/:id/gp')
 .get(authMiddleware,getTaskById)
 .put(authMiddleware,updateTask)

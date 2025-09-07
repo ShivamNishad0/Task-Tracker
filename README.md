@@ -145,6 +145,100 @@ task-tracker/
 - `npm run build` - Build for production
 - `npm run preview` - Preview production build
 
+
+## Features
+- **Task Query**: Search for tasks by title and get AI analysis
+- **Guidance Generation**: Receive step-by-step guidance on task completion
+- **Task Details**: View task information within the chat
+- **Suggestions**: Get suggestions for similar tasks
+- **User-Friendly UI**: Clean chat interface with loading states
+
+## Setup Instructions
+
+### 1. Backend Configuration
+1. Install the required dependency:
+   ```bash
+   cd backend
+   npm install @google/generative-ai
+   ```
+
+2. Add your Gemini API key to the `.env` file:
+   ```
+   GEMINI_API_KEY=your_gemini_api_key_here
+   ```
+
+   **Note**: Get your API key from [Google AI Studio](https://makersuite.google.com/app/apikey)
+
+### 2. Environment Variables
+Ensure your `backend/.env` file includes:
+- `GEMINI_API_KEY`: Your Google Gemini API key
+- `JWT_SECRET`: Your JWT secret (existing)
+- `MONGO_URI`: Your MongoDB connection string (existing)
+
+### 3. API Endpoints
+The following new endpoints are available:
+- `POST /api/tasks/chatbot/query`: Process user queries about tasks
+- `GET /api/tasks/chatbot/suggestions`: Get AI-generated task management suggestions
+
+## Usage
+
+### Frontend
+1. Open the Dashboard page
+2. Click the "Ask AI" button (green button with chat icon)
+3. Type a task title or question in the chat input
+4. The chatbot will:
+   - Search for matching tasks
+   - Analyze the task description
+   - Provide step-by-step guidance
+   - Show task details and suggestions
+
+### Example Queries
+- "Help me with my project planning task"
+- "How to complete the marketing campaign"
+- "What should I do for the code review task"
+
+## Technical Implementation
+
+### Backend
+- **geminiAI.js**: Utility module for Gemini AI integration
+- **taskController.js**: Added `chatbotQuery` and `getTaskSuggestions` functions
+- **taskRoute.js**: New routes for chatbot functionality
+- **taskModel.js**: Fixed `completed` field to use string enum
+
+### Frontend
+- **Chatbot.jsx**: Main chatbot component with chat UI
+- **Dashboard.jsx**: Integrated chatbot button and component
+
+## Security
+- All chatbot requests require authentication
+- API key is stored securely in environment variables
+- User data is filtered by ownership
+
+## Error Handling
+- Invalid queries return helpful messages
+- Network errors are caught and displayed
+- Loading states prevent multiple simultaneous requests
+
+## Future Enhancements
+- Voice input support
+- Integration with calendar for scheduling
+- Advanced task categorization
+- Multi-language support
+
+## Testing
+To test the chatbot:
+1. Start the backend server: `npm start` in backend directory
+2. Start the frontend: `npm run dev` in frontend directory
+3. Create some tasks with descriptions
+4. Use the chatbot to query about tasks
+
+## Troubleshooting
+- **API Key Issues**: Ensure `GEMINI_API_KEY` is set correctly
+- **Authentication Errors**: Check JWT token validity
+- **No Tasks Found**: Verify task titles match the query
+- **AI Response Errors**: Check Gemini API quota and connectivity
+
+
 ## 🤝 Contributing
 
 1. Fork the project

@@ -5,6 +5,7 @@ import {useOutletContext} from 'react-router-dom'
 import TaskItem from '../components/TaskItem'
 import TaskModel from '../components/TaskModel'
 import Sidebar from '../components/Sidebar'
+import Chatbot from '../components/Chatbot'
 import axios from 'axios'
 
 
@@ -86,10 +87,12 @@ const handleTaskSave = useCallback(async (taskData) => {
                 <p className='text-sm text-gray-500 mt-1 ml-7 truncate'>Manage your tasks efficiently</p>
 
             </div>
-            <button onClick={() => setShowModel(true)} className={ADD_BUTTON}>
-                <Plus size={18} />
-                Add New Task
-            </button>
+            <div className="flex gap-2">
+                <button onClick={() => setShowModel(true)} className={ADD_BUTTON}>
+                    <Plus size={18} />
+                    Add New Task
+                </button>
+            </div>
 
         </div>
         {/* stats cars */}
@@ -199,6 +202,9 @@ const handleTaskSave = useCallback(async (taskData) => {
             onClose={() => {setShowModel(false); setSelectTask(null)}}
             taskToEdit={selectedTask}
             onSave={handleTaskSave} />
+
+            {/* Chatbot */}
+            <Chatbot />
 
         </div>
 
