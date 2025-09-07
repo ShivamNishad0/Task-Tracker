@@ -2,7 +2,7 @@ import userModel from "../models/userModel.js"
 import bcrypt from "bcrypt"
 import validator from "validator"
 import jwt from "jsonwebtoken"
-import { sendWhatsAppMessage } from "../utils/whatsapp.js";
+
 
 // Create JWT token
 const JWT_SECRET = process.env.JWT_SECRET || "your_jwt_secret_key";
@@ -52,15 +52,7 @@ export async function registerUser(req, res) {
     });
 
     await newUser.save();
-
-    // Send WhatsApp thank you message if phone is provided
-    if (phone) {
-      const message = `Thank you for signing up for TaskTracker, ${name}! We're excited to have you on board.`;
-      sendWhatsAppMessage(phone, message);
-    }
-
     const token = createToken(newUser._id);
-
     res.status(201).json({
       success: true,
       token,
@@ -76,7 +68,6 @@ export async function registerUser(req, res) {
     res.status(500).json({ success: false, message: "Internal server error" });
   }
 }
-
 // ======================= Login a user =======================
 export async function loginUser(req, res) {
   const { email, password } = req.body;

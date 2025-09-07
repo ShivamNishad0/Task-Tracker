@@ -4,8 +4,6 @@ import 'dotenv/config'
 import { connectDB } from './config/db.js'
 import authMiddleware from './middleware/auth.js'
 import cron from 'node-cron'
-import { checkAndSendReminders } from './utils/reminderService.js'
-
 import userRouter from './routes/userRoute.js'
 import taskRouter from './routes/taskRoute.js'
 
@@ -28,11 +26,6 @@ app.get('/', (req, res) => {
 app.use('/api/user', userRouter);
 app.use('/api/tasks', taskRouter);
 
-// Schedule the reminder check to run every hour
-cron.schedule("0 * * * *", () => {
-  console.log("Running scheduled task: checkAndSendReminders");
-  checkAndSendReminders();
-});
 
 app.listen(PORT, () => {
     console.log(`Server is running on port http://localhost:${PORT}`);
