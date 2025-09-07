@@ -37,7 +37,7 @@ Before you begin, ensure you have the following installed:
    Create a `.env` file in the `backend` folder:
    ```env
    MONGO_URI=<your-mongodb-connection-string>
-   PORT=5000
+   PORT=4000
    ```
    
    > 💡 **Tip:** You can get a free MongoDB URI from [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
@@ -89,7 +89,7 @@ Before you begin, ensure you have the following installed:
 Your Task-Tracker application is now up and running! 
 
 - 🖥️ **Frontend:** `http://localhost:5173`
-- 🔌 **Backend API:** `http://localhost:5000` (or your custom port)
+- 🔌 **Backend API:** `http://localhost:4000` (or your custom port)
 
 ## 📂 Project Structure
 

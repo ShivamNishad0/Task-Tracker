@@ -1,19 +1,10 @@
 import Task from "../middleware/taskModel.js";
 
-//create a task
-
-
 const normalizeCompleted = (val) => {
-    if (typeof val === 'boolean') return val ? 'completed' : 'pending';
-    if (typeof val === 'string') {
-        const lowerVal = val.toLowerCase();
-        if (['true','yes','1','completed'].includes(lowerVal)) return 'completed';
-        if (['false','no','0','pending'].includes(lowerVal)) return 'pending';
-        if (['in-progress','in_progress','progress'].includes(lowerVal)) return 'in-progress';
-        return 'pending'; // default
-    }
-    if (typeof val === 'number') return val === 1 ? 'completed' : 'pending';
-    return 'pending'; // default
+  if (typeof val === 'boolean') return val;
+  if (typeof val === 'string') return val.toLowerCase() === 'true';
+  if (typeof val === 'number') return val === 1;
+  return false;
 };
 
 export async function createTask(req, res) {
