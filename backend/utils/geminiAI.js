@@ -60,7 +60,7 @@ export const generateTaskSuggestions = async (userTasks) => {
         1. Prioritization suggestions.
         2. Time management tips.
         3. Any patterns or optimizations you notice.
-        4. Some price.
+        4. Give the response on the requirement of the user.
 
         Keep the response concise.
         `;
