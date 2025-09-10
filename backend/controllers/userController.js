@@ -2,6 +2,7 @@ import userModel from "../models/userModel.js"
 import bcrypt from "bcrypt"
 import validator from "validator"
 import jwt from "jsonwebtoken"
+import { sendWelcomeMessage } from "../utils/whatsapp.js"
 
 
 // Create JWT token
@@ -52,6 +53,12 @@ export async function registerUser(req, res) {
     });
 
     await newUser.save();
+
+    // Send welcome message on WhatsApp if phone is provided
+    if (phone) {
+      await sendWelcomeMessage(phone);
+    }
+
     const token = createToken(newUser._id);
     res.status(201).json({
       success: true,

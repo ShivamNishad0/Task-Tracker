@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 import { UserPlus, Mail, Lock, User } from 'lucide-react'
 import { Inputwrapper,BUTTONCLASSES,MESSAGE_SUCCESS,MESSAGE_ERROR } from '../assets/dummy'
 
@@ -75,7 +76,17 @@ const SignUp = ({ onSwitchMode }) => {
                         {loading ? "Signing Up..." : <><UserPlus className='w-4 h-4' />Sign Up</>}
                     </button>
                 </form>
-                <p className='text-center text-sm text-gray-600 mt-6'>
+                <p className='text-center text-sm text-gray-600 mt-4'>
+                    By signing up, you agree to our{' '}
+                    <Link to="/privacy-policy" className='text-purple-600 hover:text-purple-700 hover:underline font-medium transition-colors'>
+                        Privacy Policy
+                    </Link>{' '}
+                    and{' '}
+                    <Link to="/terms-of-service" className='text-purple-600 hover:text-purple-700 hover:underline font-medium transition-colors'>
+                        Terms of Service
+                    </Link>
+                </p>
+                <p className='text-center text-sm text-gray-600 mt-2'>
                     Already have an account?{' '}
                     <button onClick={onSwitchMode} className='text-purple-600 hover:text-purple-700 hover:underline font-medium transition-colors'>
                         LOGIN

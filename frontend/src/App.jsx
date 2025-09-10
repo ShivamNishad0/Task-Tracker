@@ -7,6 +7,8 @@ import Signup from './components/SignUp'
 import Dashboard from './pages/Dashboard'
 import PendingPage from './pages/PendingPage'
 import CompletePage from './pages/CompletePage'
+import PrivacyPolicy from './pages/PrivacyPolicy'
+import TermsOfService from './pages/TermsOfService'
 import Profile from './components/Profile'
 
 
@@ -65,6 +67,9 @@ const App = () => {
       <Route path='/signup' element={<div className='fixed insert-0 bg-black bg-opacity-50 flex items-center justify-center'>
         <Signup onSubmit ={handleAuthSubmit} onSwitchMode={() => navigate('/login')} />
       </div>}/>
+
+      <Route path='/privacy-policy' element={<PrivacyPolicy />} />
+      <Route path='/terms-of-service' element={<TermsOfService />} />
 
       <Route element={currentUser ? <ProtectedLayout /> :
       <Navigate to='/login' replace />} >
