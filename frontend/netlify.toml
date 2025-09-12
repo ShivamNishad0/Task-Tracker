@@ -1,17 +1,17 @@
 [build]
-  # Directory where your build command outputs the site (adjust if needed)
+  # Directory where your build command outputs the site
   publish = "dist"  
-  # The command to build your site (for React/Vite/Next/etc., update accordingly)
+  # Build command (adjust if using React, Vite, or Next.js)
   command = "npm run build"
 
-  # (Optional) If your project is in a subfolder, set it here
-  # base = "client"
+  # If your project is inside a subfolder, uncomment and set this
+  # base = "frontend"
 
 [dev]
   # Local dev settings for `netlify dev`
   command = "npm run dev"
   port = 8888
-  targetPort = 5173   # e.g., Vite default port (adjust for your framework)
+  targetPort = 5173   # Vite default; adjust if different
 
 [functions]
   # Folder for Netlify serverless functions
