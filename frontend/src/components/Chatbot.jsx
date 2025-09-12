@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import { Send, Bot, User, X, MessageCircle } from 'lucide-react';
 
+// const API_URL = 'https://tasktrackershivam.up.railway.app/api/tasks';
 const API_URL = 'http://localhost:4000/api/tasks';
 
 const Chatbot = () => {

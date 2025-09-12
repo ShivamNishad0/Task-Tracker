@@ -3,6 +3,7 @@ import{baseControlClasses, DEFAULT_TASK, priorityStyles} from '../assets/dummy'
 import { CheckCircle, PlusCircle, X, Save, AlignLeft, Flag, Calendar } from "lucide-react";
 
 
+// const API_URL='https://tasktrackershivam.up.railway.app/api/tasks'
 const API_URL='http://localhost:4000/api/tasks'
 
 const TaskModel = ({isOpen,onClose,taskToEdit,onSave,onLogout}) => {
@@ -16,14 +17,6 @@ const TaskModel = ({isOpen,onClose,taskToEdit,onSave,onLogout}) => {
     useEffect(() => {
         if(!isOpen) return;
         if(taskToEdit){
-            // let completed = 'pending';
-            // if (typeof taskToEdit.completed === 'string') {
-            // completed = taskToEdit.completed; // already string
-            // } else if (taskToEdit.completed === true) {
-            // completed = 'completed';
-            // } else if (taskToEdit.completed === false) {
-            // completed = 'pending';
-            // }
 
             const normalized =taskToEdit.completed === true
             setTaskData({
@@ -34,17 +27,13 @@ const TaskModel = ({isOpen,onClose,taskToEdit,onSave,onLogout}) => {
                 dueDate: taskToEdit.dueDate?.split('T')[0] || '',
                 completed: normalized ,
                 id: taskToEdit._id,
-            });
-
-            
+            });    
         }
         else{
-            setTaskData(DEFAULT_TASK)
-              
+            setTaskData(DEFAULT_TASK)  
         }
         setError(null)
     }, [isOpen,taskToEdit])
-
 
     const handleChange =useCallback ((e) => {
         const {name,value}=e.target;
@@ -54,7 +43,6 @@ const TaskModel = ({isOpen,onClose,taskToEdit,onSave,onLogout}) => {
             [name]:name === "completed" ? value === "true" :value
         }))
     },[])
-
     const getHeaders=useCallback(() => {
         const token =localStorage.getItem('token')
             if(!token) throw new Error('No auth token found')
@@ -64,9 +52,6 @@ const TaskModel = ({isOpen,onClose,taskToEdit,onSave,onLogout}) => {
         }
         
     }, [])
-
-
-
     const handleSubmit =useCallback(async (e) => {
         e.preventDefault();
         if(taskData.dueDate <today){
@@ -78,14 +63,6 @@ const TaskModel = ({isOpen,onClose,taskToEdit,onSave,onLogout}) => {
         try {
             const isEdit =Boolean(taskData.id);
             const url=isEdit ? `${API_URL}/${taskData.id}/gp` : `${API_URL}/gp`;
-
-            // const body = {
-            // ...taskData,
-            // completed: taskData.completed === 'completed' ? 'completed' : 'pending'
-            // };
-
-
-
             const resp =await fetch(url, {
                 method: isEdit ?'PUT':'POST',
                 headers:getHeaders(),
@@ -94,7 +71,6 @@ const TaskModel = ({isOpen,onClose,taskToEdit,onSave,onLogout}) => {
                     completed : !!taskData.completed
                 }),
             });
-
             if(!resp.ok){
                 if(resp.status===401) return onLogout?.();
                 const err =await resp.text();
@@ -107,11 +83,8 @@ const TaskModel = ({isOpen,onClose,taskToEdit,onSave,onLogout}) => {
         }
         catch(err){
             console.error(err)
-            setError(err.message || 'An unexpected error occurrs')
-
-
-   
-        }
+            setError(err.message || 'An unexpected error occurrs')   
+          }
         finally{
             setLoading(false)
         }
