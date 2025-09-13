@@ -2,12 +2,14 @@ import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { ClipboardCheck, LogOut, Settings, ChevronDown, Zap } from "lucide-react";
 
+
 const Navbar = ({ user={} , onLogout }) => {
   const menuref = useRef(null)
   const [menuOpen, setMenuOpen] = useState(false)
   const navigate = useNavigate(); 
 
   
+
 
   useEffect(() => {
     const handleClickOutside =(event) => {

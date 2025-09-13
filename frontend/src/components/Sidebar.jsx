@@ -116,7 +116,8 @@ const Sidebar = ({user,tasks} ) => {
               </div>
 
             </div>
-            
+
+
 
           </div>
 
@@ -173,6 +174,7 @@ const Sidebar = ({user,tasks} ) => {
     </>
   )
 }
+
 
 export default Sidebar
  

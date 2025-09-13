@@ -5,6 +5,7 @@ import { UserPlus, Mail, Lock, User } from 'lucide-react'
 import { Inputwrapper,BUTTONCLASSES,MESSAGE_SUCCESS,MESSAGE_ERROR } from '../assets/dummy'
 
 
+
 // Recreated constants to make the file self-contained.
 // const API_URL = "https://tasktrackershivam.up.railway.app";
 

@@ -6,6 +6,7 @@ import axios from 'axios'
 import { TrendingUp, Circle, Clock, Zap } from 'lucide-react'
 
 
+
 const Layout = ({user={} , onLogout }) => {
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(true);

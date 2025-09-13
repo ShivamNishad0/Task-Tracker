@@ -18,6 +18,7 @@ const TaskModel = ({isOpen,onClose,taskToEdit,onSave,onLogout}) => {
         if(!isOpen) return;
         if(taskToEdit){
 
+            
             const normalized =taskToEdit.completed === true
             setTaskData({
                 ...DEFAULT_TASK,
