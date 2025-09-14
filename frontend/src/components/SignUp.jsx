@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 import { UserPlus, Mail, Lock, User } from 'lucide-react'
 import { Inputwrapper,BUTTONCLASSES,MESSAGE_SUCCESS,MESSAGE_ERROR } from '../assets/dummy'
 
+// Small change for git push
+
 
 
 // Recreated constants to make the file self-contained.
