@@ -9,7 +9,7 @@ import { sendWelcomeMessage } from "../utils/whatsapp.js"
 const JWT_SECRET = process.env.JWT_SECRET || "your_jwt_secret_key";
 const TOKEN_EXPIRE_TIME = "24h"; // Token expiration time
 
-const createToken = (userId) =>
+export const createToken = (userId) =>
   jwt.sign({ id: userId }, JWT_SECRET, { expiresIn: TOKEN_EXPIRE_TIME });
 
 // ======================= Register a user =======================
@@ -230,4 +230,26 @@ export async function getCurrentUser(req, res) {
     console.log(error);
     res.status(500).json({ success: false, message: "Internal server error" });
   }
+}
+
+// ======================= Google OAuth =======================
+export function googleAuth(req, res, next) {
+  passport.authenticate('google', { scope: ['profile', 'email'] })(req, res, next);
+}
+
+export function googleAuthCallback(req, res, next) {
+  passport.authenticate('google', { failureRedirect: '/login', session: true }, (err, user) => {
+    if (err || !user) {
+      return res.redirect('/login');
+    }
+    req.logIn(user, (err) => {
+      if (err) {
+        return res.redirect('/login');
+      }
+      // Create JWT token for the user
+      const token = createToken(user._id);
+      // Redirect to frontend with token as query param or set cookie
+      res.redirect(`${process.env.FRONTEND_URL || 'http://localhost:3000'}/?token=${token}`);
+    });
+  })(req, res, next);
 }
