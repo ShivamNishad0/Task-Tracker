@@ -17,15 +17,7 @@ const CompletePage = () => {
       typeof task.completed ==='string' ? task.completed.toLowerCase()
       :task.completed
     ))
-    // .filter(task => {
-    //     if (typeof task.completed === 'boolean') return task.completed;
-    //     if (typeof task.completed === 'string') {
-    //       return ['true', 'yes', '1', 'completed'].includes(task.completed.toLowerCase());
-    //     }
-    //     if (typeof task.completed === 'number') return task.completed === 1;
-    //     return false;
-    //   })
-    // .filter(task => task.completed === true)
+
     .sort((a,b) => {
       switch(sortBy) {
         case 'newest':
