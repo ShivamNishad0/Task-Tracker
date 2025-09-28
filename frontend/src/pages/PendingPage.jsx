@@ -7,7 +7,7 @@ import TaskItem from '../components/TaskItem'
 import TaskModel from '../components/TaskModel'
 
 
-const API_URL= 'http://localhost:4000/api/tasks'
+const API_URL = `${import.meta.env.VITE_API_BASE_URL || 'https://task-tracker-backend-vtvb.onrender.com/'}/api/tasks`
 
 
 const PendingPage = () => {

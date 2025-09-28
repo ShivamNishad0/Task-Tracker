@@ -3,8 +3,8 @@ import{baseControlClasses, DEFAULT_TASK, priorityStyles} from '../assets/dummy'
 import { CheckCircle, PlusCircle, X, Save, AlignLeft, Flag, Calendar } from "lucide-react";
 
 
-// const API_URL='https://tasktrackershivam.up.railway.app/api/tasks'
-const API_URL='http://localhost:4000/api/tasks'
+// const API_URL='https://task-tracker-backend-vtvb.onrender.com//api/tasks'
+const API_URL = `${import.meta.env.VITE_API_BASE_URL || 'https://task-tracker-backend-vtvb.onrender.com/'}/api/tasks`
 
 const TaskModel = ({isOpen,onClose,taskToEdit,onSave,onLogout}) => {
 

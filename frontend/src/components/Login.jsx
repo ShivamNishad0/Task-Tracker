@@ -28,8 +28,7 @@ const Login = ({ onSubmit, onSwitchMode }) => {
     //const [message, setMessage] = useState(false);
     const navigate = useNavigate()
     const [searchParams] = useSearchParams()
-    // const API_URL = "https://tasktrackershivam.up.railway.app";
-    const API_URL = "http://localhost:4000";
+    const API_URL = import.meta.env.VITE_API_BASE_URL || "https://task-tracker-backend-vtvb.onrender.com/";
 
     
     useEffect(() => {

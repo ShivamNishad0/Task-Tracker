@@ -5,7 +5,7 @@ import { Outlet } from 'react-router-dom'
 import axios from 'axios'
 import { TrendingUp, Circle, Clock, Zap } from 'lucide-react'
 
-
+const API_URL = `${import.meta.env.VITE_API_BASE_URL || 'https://task-tracker-backend-vtvb.onrender.com/'}/api/tasks`
 
 const Layout = ({user={} , onLogout }) => {
   const [tasks, setTasks] = useState([]);
@@ -20,7 +20,7 @@ const Layout = ({user={} , onLogout }) => {
       const token = localStorage.getItem('token');
       if (!token) throw new Error('No auth token found');
 
-      const { data } = await axios.get("http://localhost:4000/api/tasks/gp", {
+      const { data } = await axios.get(`${API_URL}/gp`, {
         headers: { Authorization: `Bearer ${token}` }
       })
 

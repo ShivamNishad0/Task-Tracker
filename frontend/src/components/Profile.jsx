@@ -11,8 +11,8 @@ import Sidebar from './Sidebar';
 
 
 
-// const API_URL='https://tasktrackershivam.up.railway.app'
-const API_URL = 'http://localhost:4000'
+// const API_URL='https://task-tracker-backend-vtvb.onrender.com/'
+const API_URL = import.meta.env.VITE_API_BASE_URL || 'https://task-tracker-backend-vtvb.onrender.com/'
 const Profile = ({setCurrentUser, onLogout}) => {
 
 const [profile, setProfile]=useState({name: "", email: "", phone: "" })

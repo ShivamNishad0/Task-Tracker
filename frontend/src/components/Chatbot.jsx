@@ -2,8 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import { Send, Bot, User, X, MessageCircle } from 'lucide-react';
 
-// const API_URL = 'https://tasktrackershivam.up.railway.app/api/tasks';
-const API_URL = 'http://localhost:4000/api/tasks';
+const API_URL = `${import.meta.env.VITE_API_BASE_URL || 'https://task-tracker-backend-vtvb.onrender.com/'}/api/tasks`;
 
 const Chatbot = () => {
     const [isOpen, setIsOpen] = useState(false);

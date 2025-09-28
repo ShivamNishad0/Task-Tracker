@@ -26,7 +26,7 @@ COPY --from=builder /app/dist /usr/share/nginx/html
 
 # Copy custom Nginx config for SPA routing (optional, but recommended for React Router)
 # If you have a custom nginx.conf, uncomment and copy it
-# COPY nginx.conf /etc/nginx/nginx.conf
+COPY nginx.conf /etc/nginx/nginx.conf
 
 # Expose port 80
 EXPOSE 80
