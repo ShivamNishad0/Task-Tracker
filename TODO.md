@@ -1,0 +1,3 @@
+- [x] Modify analyzeTask in backend/utils/geminiAI.js to enhance prompt for detailed responses using general knowledge
+- [ ] Test the chatbot by running the app and querying about tasks
+- [ ] If needed, improve task search regex in chatbotQuery for better matching

@@ -10,26 +10,28 @@ export const analyzeTask = async (taskDescription, taskTitle, userQuery = null) 
         if (userQuery && (userQuery.includes('?') || userQuery.toLowerCase().includes('what') || userQuery.toLowerCase().includes('how') || userQuery.toLowerCase().includes('when') || userQuery.toLowerCase().includes('why') || userQuery.toLowerCase().includes('where'))) {
             // If userQuery looks like a question, answer it
             prompt = `
-            Based on the following task details, answer the user's question directly and concisely:
+            You are a helpful AI assistant for task management. The user has a task with the following details:
 
             Task Title: ${taskTitle}
             Task Description: ${taskDescription}
 
             User Question: ${userQuery}
 
-            Provide a clear, direct answer based on the task information. If the question cannot be answered from the task details, provide a helpful response about the task.
+            Answer the user's question comprehensively. Use the task details as context, but if more information is needed, draw from general knowledge about the task topic to provide complete and helpful guidance. For example, if the task is "apply for passport" and the user asks for required documents, list the standard documents needed for passport application.
+
+            Provide a clear, detailed, and actionable response.
             `;
         } else {
             // Default behavior: provide a summary
             prompt = `
-            Analyze the following task and provide a concise, plain text summary without bullet points or section headers:
+            Analyze the following task and provide a detailed summary including steps to complete it:
 
             Task Title: ${taskTitle}
             Task Description: ${taskDescription}
 
-            Provide a clear and direct explanation of the task and how to complete it, avoiding lists or formatting.
+            Provide a comprehensive explanation of the task, including any general steps, requirements, or tips based on common knowledge about such tasks. Use plain text, but you can include numbered steps if helpful.
 
-            Keep the response brief and focused on the essential information.
+            Make the response informative and helpful.
             `;
         }
 
