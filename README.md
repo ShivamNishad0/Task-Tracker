@@ -1,18 +1,27 @@
 # 📝 Task-Tracker
 
-> A modern, full-stack task management application built with Node.js and React
+> A modern, full-stack task management application built with Node.js and React, featuring AI-powered chatbot assistance
 
 [![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
 [![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
 [![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
+[![Google Gemini](https://img.shields.io/badge/Google%20Gemini-4285F4?style=for-the-badge&logo=google&logoColor=white)](https://ai.google.dev/)
 
 ## ✨ Features
 
-- 📋 Create, read, update, and delete tasks
-- 🎯 Clean and intuitive user interface
-- ⚡ Real-time updates
-- 📱 Responsive design
-- 🔒 Secure backend API
+### Core Functionality
+- 📋 **Task Management**: Create, read, update, and delete tasks with priority levels
+- 👤 **User Authentication**: Secure login and signup with JWT tokens
+- 🎯 **Clean UI**: Intuitive and responsive user interface
+- 📱 **Mobile-Friendly**: Fully responsive design for all devices
+- 🔒 **Secure API**: Protected backend with authentication middleware
+
+### AI-Powered Features
+- 🤖 **AI Chatbot**: Get help with tasks using Google Gemini AI
+- 🔍 **Task Query**: Search and analyze tasks with natural language
+- 📝 **Guidance Generation**: Receive step-by-step task completion guidance
+- 💡 **Smart Suggestions**: Get recommendations for similar tasks
+- 💬 **Interactive Chat**: Conversational interface with task details
 
 ## 🚀 Quick Start
 
@@ -84,12 +93,61 @@ Before you begin, ensure you have the following installed:
    
    ✅ **Frontend is now running!** Open your browser and go to `http://localhost:5173`
 
+## 🚀 Deployment
+
+### Frontend Deployment (Netlify)
+
+1. **Connect to Netlify**
+   - Push your code to GitHub
+   - Connect your repository to [Netlify](https://netlify.com)
+   - Set build settings:
+     - **Base directory:** `frontend`
+     - **Build command:** `npm run build`
+     - **Publish directory:** `dist`
+
+2. **Environment Variables**
+   - Add `VITE_API_BASE_URL` with your backend URL (e.g., `https://your-backend.onrender.com`)
+
+### Backend Deployment (Render/Heroku)
+
+1. **Using Render (Recommended)**
+   - Connect your GitHub repo to [Render](https://render.com)
+   - Create a new Web Service
+   - Set build/runtime settings:
+     - **Root Directory:** `backend`
+     - **Build Command:** `npm install`
+     - **Start Command:** `npm start`
+
+2. **Environment Variables for Backend**
+   ```
+   MONGO_URI=your_mongodb_connection_string
+   PORT=4000
+   JWT_SECRET=your_jwt_secret
+   GEMINI_API_KEY=your_gemini_api_key
+   ```
+
+### Docker Deployment (Alternative)
+
+If you prefer containerized deployment:
+
+1. **Build and run with Docker Compose** (if you have a compose file)
+   ```bash
+   docker-compose up --build
+   ```
+
+2. **Manual Docker deployment**
+   - Build backend: `docker build -f docker/backend.Dockerfile -t task-tracker-backend .`
+   - Build frontend: `docker build -f docker/frontend.Dockerfile -t task-tracker-frontend .`
+   - Run containers with appropriate environment variables
+
 ## 🎉 You're All Set!
 
-Your Task-Tracker application is now up and running! 
+Your Task-Tracker application is now up and running locally!
 
 - 🖥️ **Frontend:** `http://localhost:5173`
 - 🔌 **Backend API:** `http://localhost:4000` (or your custom port)
+
+For production deployment, follow the deployment guide above.
 
 ## 📂 Project Structure
 
@@ -97,24 +155,53 @@ Your Task-Tracker application is now up and running!
 task-tracker/
 ├── backend/
 │   ├── config/
+│   │   ├── db.js
+│   │   └── passport.js
 │   ├── controllers/
+│   │   ├── taskController.js
+│   │   └── userController.js
 │   ├── middleware/
+│   │   ├── auth.js
+│   │   └── taskModel.js
 │   ├── models/
+│   │   └── userModel.js
 │   ├── routes/
+│   │   ├── taskRoute.js
+│   │   └── userRoute.js
+│   ├── utils/
+│   │   └── geminiAI.js
 │   ├── server.js
 │   ├── package.json
-│   └── .env
+│   ├── .env
+│   └── .gitignore
 ├── frontend/
 │   ├── src/
 │   │   ├── assets/
 │   │   ├── components/
+│   │   │   ├── Chatbot.jsx
+│   │   │   ├── Layout.jsx
+│   │   │   ├── Login.jsx
+│   │   │   ├── Profile.jsx
+│   │   │   ├── SignUp.jsx
+│   │   │   ├── TaskItem.jsx
+│   │   │   └── TaskModel.jsx
 │   │   ├── pages/
+│   │   │   ├── Dashboard.jsx
+│   │   │   ├── PendingPage.jsx
+│   │   │   ├── CompletePage.jsx
+│   │   │   ├── PrivacyPolicy.jsx
+│   │   │   └── TermsOfService.jsx
 │   │   ├── App.jsx
 │   │   ├── index.css
 │   │   └── main.jsx
 │   ├── package.json
-│   ├── package.json
-│   └── vite.config.js
+│   ├── vite.config.js
+│   ├── netlify.toml
+│   └── .gitignore
+├── docker/
+│   ├── backend.Dockerfile
+│   ├── frontend.Dockerfile
+│   └── nginx.conf
 └── README.md
 ```
 
@@ -125,6 +212,8 @@ task-tracker/
 - **Express.js** - Web framework
 - **MongoDB** - Database
 - **Mongoose** - MongoDB object modeling
+- **JWT** - Authentication
+- **Google Gemini AI** - AI-powered assistance
 
 ### Frontend
 - **React** - UI library
@@ -133,6 +222,53 @@ task-tracker/
 - **React Router DOM** - Client-side routing
 - **Lucide React** - Beautiful icons library
 - **React-Toastify** - Toast notifications
+- **Axios** - HTTP client
+
+## 📡 API Documentation
+
+### Authentication
+All task endpoints require authentication. Include the JWT token in the Authorization header:
+```
+Authorization: Bearer <your_jwt_token>
+```
+
+### User Endpoints
+- `POST /api/user/register` - Register a new user
+- `POST /api/user/login` - Login user
+
+### Task Endpoints
+- `GET /api/tasks/gp` - Get all tasks for authenticated user
+- `POST /api/tasks/gp` - Create a new task
+- `GET /api/tasks/:id/gp` - Get task by ID
+- `PUT /api/tasks/:id/gp` - Update task by ID
+- `DELETE /api/tasks/:id/gp` - Delete task by ID
+
+### AI Chatbot Endpoints
+- `POST /api/tasks/chatbot/query` - Query tasks with AI analysis
+  - Body: `{ "query": "string", "history": [...] }`
+- `GET /api/tasks/chatbot/suggestions` - Get AI-generated task suggestions
+
+### Request/Response Examples
+
+**Create Task:**
+```json
+POST /api/tasks/gp
+{
+  "title": "Complete project",
+  "description": "Finish the React app",
+  "priority": "high",
+  "completed": "pending"
+}
+```
+
+**Chatbot Query:**
+```json
+POST /api/tasks/chatbot/query
+{
+  "query": "Help me with my project task",
+  "history": []
+}
+```
 
 ## 🔧 Available Scripts
 
@@ -146,97 +282,48 @@ task-tracker/
 - `npm run preview` - Preview production build
 
 
-## Features
-- **Task Query**: Search for tasks by title and get AI analysis
-- **Guidance Generation**: Receive step-by-step guidance on task completion
-- **Task Details**: View task information within the chat
-- **Suggestions**: Get suggestions for similar tasks
-- **User-Friendly UI**: Clean chat interface with loading states
+## 🤖 AI Chatbot Usage
 
-## Setup Instructions
+The AI chatbot helps you manage and understand your tasks better:
 
-### 1. Backend Configuration
-1. Install the required dependency:
-   ```bash
-   cd backend
-   npm install @google/generative-ai
-   ```
+1. **Access the Chatbot**: Click the floating chat button on the Dashboard
+2. **Ask Questions**: Type natural language queries about your tasks
+3. **Get Help**: Receive step-by-step guidance, task analysis, and suggestions
 
-2. Add your Gemini API key to the `.env` file:
-   ```
-   GEMINI_API_KEY=your_gemini_api_key_here
-   ```
+### Example Interactions
+- *"Help me complete my project task"*
+- *"What tasks do I have pending?"*
+- *"Give me tips for better task management"*
 
-   **Note**: Get your API key from [Google AI Studio](https://makersuite.google.com/app/apikey)
+### Setup Requirements
+- Add `GEMINI_API_KEY` to your backend `.env` file
+- Get the API key from [Google AI Studio](https://makersuite.google.com/app/apikey)
+- Ensure backend has `@google/generative-ai` installed
 
-### 2. Environment Variables
-Ensure your `backend/.env` file includes:
-- `GEMINI_API_KEY`: Your Google Gemini API key
-- `JWT_SECRET`: Your JWT secret (existing)
-- `MONGO_URI`: Your MongoDB connection string (existing)
+## 🧪 Testing
 
-### 3. API Endpoints
-The following new endpoints are available:
-- `POST /api/tasks/chatbot/query`: Process user queries about tasks
-- `GET /api/tasks/chatbot/suggestions`: Get AI-generated task management suggestions
+1. **Local Testing**:
+   - Start backend: `cd backend && npm start`
+   - Start frontend: `cd frontend && npm run dev`
+   - Create sample tasks and test the chatbot
 
-## Usage
+2. **API Testing**:
+   - Use tools like Postman to test endpoints
+   - Include JWT token in Authorization header
 
-### Frontend
-1. Open the Dashboard page
-2. Click the "Ask AI" button (green button with chat icon)
-3. Type a task title or question in the chat input
-4. The chatbot will:
-   - Search for matching tasks
-   - Analyze the task description
-   - Provide step-by-step guidance
-   - Show task details and suggestions
+## 🔧 Troubleshooting
 
-### Example Queries
-- "Help me with my project planning task"
-- "How to complete the marketing campaign"
-- "What should I do for the code review task"
+### Common Issues
+- **API Key Errors**: Verify `GEMINI_API_KEY` is set correctly
+- **Authentication Failures**: Check JWT token validity
+- **No Tasks Found**: Ensure tasks exist and match query terms
+- **AI Response Issues**: Check Gemini API quota and network connectivity
+- **Build Errors**: Ensure all dependencies are installed
 
-## Technical Implementation
-
-### Backend
-- **geminiAI.js**: Utility module for Gemini AI integration
-- **taskController.js**: Added `chatbotQuery` and `getTaskSuggestions` functions
-- **taskRoute.js**: New routes for chatbot functionality
-- **taskModel.js**: Fixed `completed` field to use string enum
-
-### Frontend
-- **Chatbot.jsx**: Main chatbot component with chat UI
-- **Dashboard.jsx**: Integrated chatbot button and component
-
-## Security
-- All chatbot requests require authentication
-- API key is stored securely in environment variables
-- User data is filtered by ownership
-
-## Error Handling
-- Invalid queries return helpful messages
-- Network errors are caught and displayed
-- Loading states prevent multiple simultaneous requests
-
-## Future Enhancements
-- Voice input support
-- Integration with calendar for scheduling
-- Advanced task categorization
-- Multi-language support
-
-## Testing
-To test the chatbot:
-1. Start the backend server: `npm start` in backend directory
-2. Start the frontend: `npm run dev` in frontend directory
-3. Create some tasks with descriptions
-4. Use the chatbot to query about tasks
-
-## Troubleshooting
-- **API Key Issues**: Ensure `GEMINI_API_KEY` is set correctly
-- **Authentication Errors**: Check JWT token validity
-- **No Tasks Found**: Verify task titles match the query
-- **AI Response Errors**: Check Gemini API quota and connectivity
+### Getting Help
+- Check console logs for detailed error messages
+- Verify environment variables are loaded
+- Test API endpoints individually
 
 
 ## 🤝 Contributing
