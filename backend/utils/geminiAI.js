@@ -4,7 +4,7 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 export const analyzeTask = async (taskDescription, taskTitle, userQuery = null) => {
     try {
-        const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+        const model = genAI.getGenerativeModel({ model: 'text-bison-001' });
 
         let prompt;
         if (userQuery && (userQuery.includes('?') || userQuery.toLowerCase().includes('what') || userQuery.toLowerCase().includes('how') || userQuery.toLowerCase().includes('when') || userQuery.toLowerCase().includes('why') || userQuery.toLowerCase().includes('where'))) {
@@ -48,7 +48,7 @@ export const analyzeTask = async (taskDescription, taskTitle, userQuery = null) 
 
 export const generateTaskSuggestions = async (userTasks) => {
     try {
-        const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+        const model = genAI.getGenerativeModel({ model: 'models/gemini-1.0-pro' });
 
         const tasksSummary = userTasks.map(task => `${task.title}: ${task.description}`).join('\n');
 
@@ -80,7 +80,7 @@ export const generateTaskSuggestions = async (userTasks) => {
 
 export const generalChat = async (userQuery) => {
     try {
-        const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+        const model = genAI.getGenerativeModel({ model: 'text-bison-001' });
 
         const prompt = `
         You are a helpful AI assistant. Answer the user's query directly and concisely. If the query is not related to tasks, provide a general helpful response.
@@ -103,7 +103,7 @@ export const generalChat = async (userQuery) => {
 
 export const generalChatWithHistory = async (userQuery, history = []) => {
     try {
-        const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+        const model = genAI.getGenerativeModel({ model: 'text-bison-001' });
 
         // Build conversation history string
         let historyText = '';

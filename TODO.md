@@ -1,3 +1,4 @@
 - [x] Modify analyzeTask in backend/utils/geminiAI.js to enhance prompt for detailed responses using general knowledge
-- [ ] Test the chatbot by running the app and querying about tasks
+- [x] Update Gemini AI model to 'models/gemini-1.0-pro' to resolve API compatibility
+- [x] Test the chatbot by running the app and querying about tasks
 - [ ] If needed, improve task search regex in chatbotQuery for better matching
