@@ -65,7 +65,12 @@ const TaskItem = ({task, onRefresh,onLogout,showCompleteCheckbox=true}) => {
         }
     }
 
-    
+    const handleAction = (action) => { 
+        SetShowMenu(false)
+        if (action==='edit') setShowEditModel(true)
+        if (action==='delete') handleDelete()
+
+    }
 
     const handleDelete = async() => {
         try{
