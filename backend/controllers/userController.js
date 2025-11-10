@@ -3,6 +3,8 @@ import bcrypt from "bcrypt"
 import validator from "validator"
 import jwt from "jsonwebtoken"
 import { sendWelcomeMessage } from "../utils/whatsapp.js"
+import { sendMail } from "../helpers/sendMail.js"
+import { welcomeMessage } from "../helpers/welcomeMassage.js"
 
 
 // Create JWT token
@@ -54,10 +56,7 @@ export async function registerUser(req, res) {
 
     await newUser.save();
 
-    // Send welcome message on WhatsApp if phone is provided
-    if (phone) {
-      await sendWelcomeMessage(phone);
-    }
+    sendMail(email,`Thanks for registering with us, ${name}`, "",welcomeMessage(name));
 
     const token = createToken(newUser._id);
     res.status(201).json({
